@@ -1,6 +1,8 @@
 # Linux 作业八：JobSpider
 
-目标：
+> 目标：
+>
+> 用Python或Java或C/C++等编写网络爬虫，获取1000条有Linux系统需求的招聘信息。（1）确定招聘网站及组织结构；（2）爬取职位介绍的url、职位名称、公司名称、城市、发布时间、职责描述等信息；（3）检索出“职责描述”中有“Linux”的招聘信息。
 
 ## Getting Started
 
@@ -13,7 +15,7 @@ scrapy crawl linux_job -o linux_jobs_zhipin.csv
 
 ## Usage
 
-1.  自定义爬取数据条数：（默认为10）
+1.  自定义爬取数据条数：（默认为10条）
 
 ```shell
 scrapy crawl linux_job -o linux_jobs_zhipin.csv -a count=100
@@ -33,8 +35,6 @@ scrapy crawl linux_job -o linux_jobs_zhipin.json
 ```
 60.205.129.48   www.zhipin.com
 ```
-
-***
 
 ### JobSpider数据来源：[BOSS直聘](https://www.zhipin.com)
 
