@@ -8,10 +8,10 @@
 ## Getting Started
 
 ```shell
-git clone --depth=1 https://github.com/m8524769/JobSpider.git
-cd ./JobSpider
-pip3 install -r requirements.txt
-scrapy crawl linux_job -o linux_jobs_zhipin.csv
+$ git clone --depth=1 https://github.com/m8524769/JobSpider.git
+$ cd ./JobSpider
+$ pip3 install -r requirements.txt
+$ scrapy crawl linux -o out.csv
 ```
 
 ## Usage
@@ -19,13 +19,19 @@ scrapy crawl linux_job -o linux_jobs_zhipin.csv
 1.  自定义爬取数据条数：（默认为10条）
 
 ```shell
-scrapy crawl linux_job -o linux_jobs_zhipin.csv -a count=100
+$ scrapy crawl linux -o out.csv -a limit=100
 ```
 
-2.  自定义导出格式：（默认为csv）
+2.  自定义起始数：（默认为0）
 
 ```shell
-scrapy crawl linux_job -o linux_jobs_zhipin.json
+$ scrapy crawl linux -o out.csv -a start=20
+```
+
+3.  自定义导出格式：（默认为csv）
+
+```shell
+$ scrapy crawl linux -o out.json
 ```
 
 ## F.A.Q.

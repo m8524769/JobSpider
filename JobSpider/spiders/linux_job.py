@@ -10,7 +10,7 @@ class LinuxJobSpider(scrapy.Spider):
 
     def parse(self, response):
         for job in response.css('div.job-primary'):
-            if self.count == 0:
+            if self.limit == 0:
                 break
 
             if self.more == True:
@@ -35,10 +35,10 @@ class LinuxJobSpider(scrapy.Spider):
                 'url': self.base_url + job.css('div.info-primary > h3 > a::attr("href")').extract_first(),
             }
 
-            self.count -= 1
+            self.limit -= 1
 
         next_page = response.css('a.next::attr("href")').extract_first()
-        if next_page is not None and self.count > 0:
+        if next_page is not None and self.limit > 0:
             yield response.follow(next_page, self.parse)
 
     def parse_detail(self, response):
@@ -53,8 +53,8 @@ class LinuxJobSpider(scrapy.Spider):
             '职责描述': detail
         }
 
-    def __init__(self, count=10, more=False):
-        self.count = int(count)
+    def __init__(self, limit=10, more=False):
+        self.limit = int(limit)
         if more in ['True', 'true']:
             self.more = True
         else:

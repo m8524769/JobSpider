@@ -1,24 +1,29 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import re
+import time
 
-class LinuxJobNextSpider(scrapy.Spider):
-    name = 'linux_job_next'
+class LinuxSpider(scrapy.Spider):
+    name = 'linux'
     base_url = 'www.zhipin.com'
     allowed_domains = [base_url]
     start_urls = ['https://www.zhipin.com/c100010000/?query=linux']
 
     def parse(self, response):
         for job in response.css('div.job-primary'):
-            if self.count == 0:
+            if self.start > 0:
+                self.start -= 1
+                break
+            if self.limit == 0:
                 break
 
             link = job.xpath('.//a/@href').extract_first()
             yield response.follow(link, self.parse_detail)
-            self.count -= 1
+            self.limit -= 1
+            time.sleep(10)
 
         next_page = response.css('a.next::attr("href")').extract_first()
-        if next_page is not None and self.count > 0:
+        if next_page is not None and self.limit > 0:
             yield response.follow(next_page, self.parse)
 
     def parse_detail(self, response):
@@ -29,10 +34,10 @@ class LinuxJobNextSpider(scrapy.Spider):
             '要求': response.css('div.info-primary > p::text').extract()[:3],
             '发布时间': response.css('span.time::text').extract_first(),
             'url': response.url,
-            '公司网址': response.css('div.info-company > p::text').extract()[-1],
             '职位描述': response.css('div.text::text').extract()[:-1],
             '公司介绍': response.css('div.text::text').extract()[-1],
         }
 
-    def __init__(self, count=1):
-        self.count = int(count)
+    def __init__(self, start=0, limit=10):
+        self.start = int(start)
+        self.limit = int(limit)
