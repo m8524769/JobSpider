@@ -2,8 +2,8 @@
 import scrapy
 import json
 
-class LinuxJobSpider(scrapy.Spider):
-    name = 'linux_job'
+class BriefSpider(scrapy.Spider):
+    name = 'brief'
     base_url = 'www.zhipin.com'
     allowed_domains = [base_url]
     start_urls = ['https://www.zhipin.com/c100010000/?query=linux']

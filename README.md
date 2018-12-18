@@ -34,6 +34,20 @@ $ scrapy crawl linux -o out.csv -a start=20
 $ scrapy crawl linux -o out.json
 ```
 
+4.  只爬取必要信息：（稳定快速，推荐）
+
+```shell
+$ scrapy crawl brief -o out.csv
+```
+
+5.  爬取职责描述中包含“Linux”的数据：（效率较低，不推荐）
+
+```shell
+$ scrapy crawl related -o out.csv
+```
+
+6.  `/proxy_list.txt`文件中存放的是代理IP列表，如有可用性更高的代理IP池可将其内容替换。
+
 ## F.A.Q.
 
 > 运行时出现`DNS lookup failed`咋办？
