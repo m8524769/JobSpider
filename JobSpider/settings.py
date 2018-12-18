@@ -117,7 +117,7 @@ PROXY_LIST = './proxy_list.txt'
 # 0 = Every requests have different proxy
 # 1 = Take only one proxy from the list and assign it to every requests
 # 2 = Put a custom proxy to use in the settings
-PROXY_MODE = 2
+PROXY_MODE = 0
 
 # If proxy mode is 2 uncomment this sentence :
-CUSTOM_PROXY = "http://223.111.201.46:80"
+CUSTOM_PROXY = "http://123.58.10.81:8080"
